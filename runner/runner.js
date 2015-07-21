@@ -94,12 +94,9 @@ ManifestIterator.prototype = {
     },
 
     matches: function(manifest_item) {
-        for (var i in this.paths) {
-            if (manifest_item.url.indexOf(this.paths[i]) === 0) {
-                return true;
-            }
-        }
-        return false;
+        return this.paths.some(function(p) {
+            return manifest_item.url.indexOf(p) === 0;
+        });
     },
 
     to_test: function(manifest_item) {
