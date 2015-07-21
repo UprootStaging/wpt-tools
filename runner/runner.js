@@ -58,7 +58,7 @@ Manifest.prototype = {
 
 function ManifestIterator(manifest, path, test_types) {
     this.manifest = manifest;
-    this.path = path;
+    this.paths = path.split(",");
     this.test_types = test_types;
     this.test_types_index = -1;
     this.test_list = null;
@@ -94,7 +94,12 @@ ManifestIterator.prototype = {
     },
 
     matches: function(manifest_item) {
-        return manifest_item.url.indexOf(this.path) === 0;
+        for (var i in this.paths) {
+            if (manifest_item.url.indexOf(this.paths[i]) === 0) {
+                return true;
+            }
+        }
+        return false;
     },
 
     to_test: function(manifest_item) {
