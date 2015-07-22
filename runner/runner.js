@@ -59,7 +59,7 @@ Manifest.prototype = {
 function ManifestIterator(manifest, path, test_types) {
     this.manifest = manifest;
     // Split paths by either a comma or whitespace, and ignore empty sub-strings.
-    this.paths = path.split(/(?:,|\s)+/).filter(function(s) { return s.length > 0 });
+    this.paths = path.split(/[,\s]+/).filter(function(s) { return s.length > 0 });
     this.test_types = test_types;
     this.test_types_index = -1;
     this.test_list = null;
